@@ -4,52 +4,157 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الثقافة والتراث</title>
-<meta name="description" content="باركود يجمع التراث ويربطه بالتقدم التكنولوجي">
+
 <style>
 body{
 margin:0;
-font-family:Tahoma;
+font-family:Tah​oma;
 background:#e6d3a3;
 text-align:center;
-color:#5b3a1a;
 }
-.container{
-padding:40px;
-}
-h1{
-font-size:40px;
-margin-top:40px;
-}
-p{
-font-size:20px;
-}
-.btn{
+.page{display:none;padding:40px;}
+.active{display:block;}
+button{
 display:block;
-margin:15px auto;
+margin:12px auto;
 padding:15px;
-width:260px;
-background:#8b5e3c;
+width:85%;
+border:none;
+border-radius:12px;
+background:#6b4423;
 color:white;
-border-radius:10px;
-text-decoration:none;
+font-size:18px;
 }
-.btn:hover{
-background:#5a3a23;
+.card{
+background:white;
+padding:20px;
+margin:15px auto;
+border-radius:10px;
+max-width:600px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- نافذة اللغة -->
+<div id="lang" class="page active">
 <h1>الثقافة والتراث</h1>
-<p>باركود يجمع التراث ويربطه بالتقدم التكنولوجي</p>
-
-<a class="btn" href="#">محافظة أحد رفيدة</a>
-<a class="btn" href="#">المعالم الأثرية</a>
-<a class="btn" href="#">المراكز</a>
-
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('fr')">Français</button>
 </div>
+
+<!-- الصفحة الرئيسية -->
+<div id="home" class="page">
+<h1 id="homeTitle"></h1>
+<button onclick="show('gov')" id="btnGov"></button>
+<button onclick="show('arch')" id="btnArch"></button>
+<button onclick="show('centers')" id="btnCenters"></button>
+</div>
+
+<!-- المحافظة -->
+<div id="gov" class="page">
+<h1 id="govTitle"></h1>
+<div class="card" id="govText"></div>
+<button onclick="show('home')">⬅ رجوع</button>
+</div>
+
+<!-- المعالم -->
+<div id="arch" class="page">
+<h1 id="archTitle"></h1>
+<div class="card" id="jarash"></div>
+<div class="card" id="sunday"></div>
+<div class="card" id="hamoma"></div>
+<button onclick="show('home')">⬅ رجوع</button>
+</div>
+
+<!-- المراكز -->
+<div id="centers" class="page">
+<h1 id="centersTitle"></h1>
+<div class="card" id="shaaf"></div>
+<div class="card" id="faraain"></div>
+<div class="card" id="wadain"></div>
+<button onclick="show('home')">⬅ رجوع</button>
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+const data={
+ar:{
+homeTitle:"الثقافة والتراث",
+btnGov:"محافظة أحد رفيدة",
+btnArch:"المعالم الأثرية",
+btnCenters:"المراكز",
+govTitle:"محافظة أحد رفيدة",
+govText:"تُعد محافظة أحد رفيدة من أهم مناطق عسير التراثية، حيث تجمع بين العمق التاريخي والهوية الثقافية الأصيلة.",
+archTitle:"المعالم الأثرية",
+jarash:"مدينة جرش الأثرية: موقع تاريخي يعكس حضارات المنطقة القديمة.",
+sunday:"سوق الأحد الشعبي: سوق تراثي يجسد روح المجتمع المحلي.",
+hamoma:"نقوش جبل حمومة: نقوش صخرية تاريخية تدل على عمق الحضارة.",
+centersTitle:"المراكز",
+shaaf:"مركز الشعف – متحف شعف لجوان: يعرض الموروث الشعبي والأدوات التراثية.",
+faraain:"مركز الفرعين – متحف الرميح التراثي: يبرز الهوية الثقافية للمنطقة.",
+wadain:"مركز الوادين – سوق الجمعة الشعبي: سوق تقليدي يعكس الثقافة الشعبية."
+},
+
+en:{
+homeTitle:"Culture & Heritage",
+btnGov:"Ahad Rafidah Governorate",
+btnArch:"Archaeological Sites",
+btnCenters:"Centers",
+govTitle:"Ahad Rafidah",
+govText:"Ahad Rafidah is rich in heritage where history blends with authentic traditions.",
+archTitle:"Archaeological Sites",
+jarash:"Jarash Archaeological City.",
+sunday:"Sunday Traditional Market.",
+hamoma:"Jabal Hamoma Inscriptions.",
+centersTitle:"Centers",
+shaaf:"Al Shaaf Center – Shaaf Lajwan Museum.",
+faraain:"Al Faraain Center – Al Rumaiah Heritage Museum.",
+wadain:"Al Wadain Center – Friday Traditional Market."
+},
+
+fr:{
+homeTitle:"Culture et Patrimoine",
+btnGov:"Gouvernorat Ahad Rafidah",
+btnArch:"Sites Archéologiques",
+btnCenters:"Centres",
+govTitle:"Ahad Rafidah",
+govText:"Ahad Rafidah possède un patrimoine riche mêlant histoire et traditions.",
+archTitle:"Sites Archéologiques",
+jarash:"Ville archéologique de Jarash.",
+sunday:"Marché populaire du dimanche.",
+hamoma:"Inscriptions du mont Hamoma.",
+centersTitle:"Centres",
+shaaf:"Centre Al Shaaf – Musée Shaaf Lajwan.",
+faraain:"Centre Al Faraain – Musée Al Rumaiah.",
+wadain:"Centre Al Wadain – Marché du vendredi."
+}
+};
+
+function setLang(lang){
+document.getElementById("homeTitle").innerText=data[lang].homeTitle;
+document.getElementById("btnGov").innerText=data[lang].btnGov;
+document.getElementById("btnArch").innerText=data[lang].btnArch;
+document.getElementById("btnCenters").innerText=data[lang].btnCenters;
+document.getElementById("govTitle").innerText=data[lang].govTitle;
+document.getElementById("govText").innerText=data[lang].govText;
+document.getElementById("archTitle").innerText=data[lang].archTitle;
+document.getElementById("jarash").innerText=data[lang].jarash;
+document.getElementById("sunday").innerText=data[lang].sunday;
+document.getElementById("hamoma").innerText=data[lang].hamoma;
+document.getElementById("centersTitle").innerText=data[lang].centersTitle;
+document.getElementById("shaaf").innerText=data[lang].shaaf;
+document.getElementById("faraain").innerText=data[lang].faraain;
+document.getElementById("wadain").innerText=data[lang].wadain;
+show('home');
+}
+</script>
 
 </body>
 </html>
