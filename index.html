@@ -3,18 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>الثقافة والتراث</title>
+
+<!-- خط عربي رسمي -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:Tahomа;
-background:#e6d3a3;
+font-family:'Cairo',sans-serif;
+background:#d8c8a3;
+color:#4b2e15;
 text-align:center;
 }
 
-/* ===== الهيدر الرسمي ===== */
 .header{
 background:#6b4423;
 padding:10px;
@@ -22,18 +26,25 @@ display:flex;
 justify-content:center;
 gap:15px;
 }
+
 .header img{
 height:55px;
 }
 
-/* ===== الصفحات ===== */
-.page{display:none;padding:40px;}
-.active{display:block;}
-
 h1{
-color:#5b3a1a;
-font-size:32px;
+font-weight:900;
+font-size:38px;
+margin-top:25px;
 }
+
+p{
+font-weight:700;
+line-height:1.8;
+padding:0 20px;
+}
+
+.page{display:none;padding:30px;}
+.active{display:block;}
 
 button{
 display:block;
@@ -41,25 +52,24 @@ margin:12px auto;
 padding:15px;
 width:85%;
 border:none;
-border-radius:14px;
+border-radius:15px;
 background:#6b4423;
 color:white;
 font-size:18px;
-cursor:pointer;
-}
-
-.langBtn{
-width:60%;
-background:#8a673f;
+font-weight:700;
 }
 
 .card{
-background:white;
-padding:15px;
-margin:12px auto;
-width:85%;
-border-radius:12px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
+background:#f3e7cd;
+margin:15px;
+padding:20px;
+border-radius:15px;
+font-weight:700;
+}
+
+.lang button{
+width:60%;
+background:#8b5e34;
 }
 
 </style>
@@ -67,63 +77,64 @@ box-shadow:0 0 10px rgba(0,0,0,.1);
 
 <body>
 
-<!-- ===== الشعارات الرسمية ===== -->
 <div class="header">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_Asir_Region.png">
-<img src="https://i.imgur.com/7mKQ9kB.png">
-<img src="https://i.imgur.com/N3pYQkG.png">
+<img src="https://upload.wikimedia.org/wikipedia/ar/thumb/1/14/Emblem_of_Asir_Region.svg/200px-Emblem_of_Asir_Region.svg.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Asir_Development_Authority_logo.png/200px-Asir_Development_Authority_logo.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Saudi_Vision_2030_logo.svg/200px-Saudi_Vision_2030_logo.svg.png">
 </div>
 
-<!-- ===== اختيار اللغة ===== -->
-<div id="lang" class="page active">
+<!-- اختيار اللغة -->
+<div id="lang" class="page active lang">
 <h1>اختر اللغة</h1>
-<button class="langBtn" onclick="setLang('ar')">العربية</button>
-<button class="langBtn" onclick="setLang('en')">English</button>
-<button class="langBtn" onclick="setLang('fr')">Français</button>
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('fr')">Français</button>
 </div>
 
-<!-- ===== الصفحة الرئيسية ===== -->
+<!-- الصفحة الرئيسية -->
 <div id="home" class="page">
 <h1 id="homeTitle"></h1>
-<button id="btnGov" onclick="show('gov')"></button>
-<button id="btnArch" onclick="show('arch')"></button>
-<button id="btnCenters" onclick="show('centers')"></button>
+<button onclick="show('gov')" id="btnGov"></button>
+<button onclick="show('arch')" id="btnArch"></button>
+<button onclick="show('centers')" id="btnCenters"></button>
 </div>
 
-<!-- ===== المحافظة ===== -->
+<!-- المحافظة -->
 <div id="gov" class="page">
 <h1 id="govTitle"></h1>
-<div class="card" id="govText"></div>
+<p id="govText"></p>
 <button onclick="show('home')">⬅ رجوع</button>
 </div>
 
-<!-- ===== المعالم الأثرية ===== -->
+<!-- المعالم الأثرية -->
 <div id="arch" class="page">
 <h1 id="archTitle"></h1>
+
 <div class="card" id="jarash"></div>
 <div class="card" id="sunday"></div>
 <div class="card" id="hamoma"></div>
+
 <button onclick="show('home')">⬅ رجوع</button>
 </div>
 
-<!-- ===== المراكز ===== -->
+<!-- المراكز -->
 <div id="centers" class="page">
 <h1 id="centersTitle"></h1>
+
 <div class="card" id="shaaf"></div>
 <div class="card" id="faraain"></div>
 <div class="card" id="wadain"></div>
+
 <button onclick="show('home')">⬅ رجوع</button>
 </div>
 
 <script>
 
-/* التنقل بين الصفحات */
 function show(id){
 document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 }
 
-/* ===== البيانات بثلاث لغات ===== */
 const data={
 
 ar:{
@@ -133,83 +144,81 @@ btnArch:"المعالم الأثرية",
 btnCenters:"المراكز",
 
 govTitle:"محافظة أحد رفيدة",
-govText:"تعد محافظة أحد رفيدة من المحافظات العريقة في منطقة عسير، وتمثل عمقاً تاريخياً وثقافياً يجمع بين التراث العمراني والعادات الاجتماعية الأصيلة.",
+govText:"تُعد محافظة أحد رفيدة من أهم محافظات منطقة عسير تاريخياً وثقافياً، حيث امتزج فيها الإرث القبلي العريق مع المظاهر الحضارية الحديثة. عُرفت المنطقة بأسواقها الشعبية ومواقعها الأثرية التي تعكس عمق التاريخ في جنوب المملكة، كما تمثل نقطة التقاء للثقافة المحلية والعادات الأصيلة التي توارثها الأهالي عبر الأجيال.",
 
 archTitle:"المعالم الأثرية",
-jarash:"مدينة جرش الأثرية: موقع تاريخي يعكس حضارات قديمة شهدتها المنطقة ويعد شاهداً على العمق الحضاري لعسير.",
-sunday:"سوق الأحد الشعبي: سوق تراثي يجسد روح المجتمع المحلي ويعرض المنتجات التقليدية والحرف اليدوية.",
-hamoma:"نقوش جبل حمومة: نقوش صخرية تاريخية تدل على عمق الحضارة الإنسانية في المنطقة.",
+
+jarash:"مدينة جرش الأثرية: تعد من أبرز المواقع التاريخية في المنطقة، وتشير النقوش والآثار الموجودة فيها إلى حضارات قديمة استقرت في عسير منذ قرون طويلة. تتميز بموقعها الجغرافي الاستراتيجي وكانت محطة تجارية وثقافية مهمة عبر العصور.",
+
+sunday:"سوق الأحد الشعبي: سوق تراثي يعكس روح المجتمع المحلي ويُظهر مظاهر الحياة التقليدية، حيث يجتمع الأهالي لعرض المنتجات الشعبية والحرف اليدوية والمأكولات التراثية في أجواء ثقافية أصيلة.",
+
+hamoma:"نقوش جبل حمومة: نقوش صخرية تاريخية تحمل رموزاً ورسومات قديمة تدل على مرور حضارات مختلفة بالمنطقة، وتُعد شاهداً على العمق التاريخي والتراثي لمحافظة أحد رفيدة.",
 
 centersTitle:"المراكز",
-shaaf:"مركز الشعف — متحف شعف لجوان: يعرض الموروث الشعبي والأدوات التراثية التي تعكس حياة الأهالي قديماً.",
-faraain:"مركز الفرعين — متحف الرميح التراثي: يبرز الهوية الثقافية للمنطقة من خلال المقتنيات التاريخية.",
-wadain:"مركز الوادين — سوق الجمعة الشعبي: سوق تقليدي يعكس الثقافة الشعبية والأنشطة التراثية."
+
+shaaf:"مركز الشعف — متحف شعف لجوان: يعرض الموروث الشعبي والأدوات التراثية التي استخدمها الأهالي قديماً، ويعكس تفاصيل الحياة اليومية في عسير عبر مقتنيات تاريخية نادرة.",
+
+faraain:"مركز الفرعين — متحف الرميح التراثي: يبرز الهوية الثقافية للمنطقة من خلال عرض الملابس التقليدية والأسلحة القديمة والمجسمات التي تحكي تاريخ المجتمع المحلي.",
+
+wadain:"مركز الوادين — سوق الجمعة الشعبي: سوق تقليدي يجمع بين التجارة والتراث، ويُعد ملتقى اجتماعياً يعكس الثقافة الشعبية والحياة الاقتصادية القديمة."
+
 },
 
 en:{
 homeTitle:"Culture & Heritage",
-btnGov:"Ahad Rafidah Governorate",
+btnGov:"Ahad Rafidah",
 btnArch:"Archaeological Sites",
 btnCenters:"Centers",
-
-govTitle:"Ahad Rafidah Governorate",
-govText:"Ahad Rafidah represents deep heritage in Asir region combining traditional architecture and authentic culture.",
-
+govTitle:"Ahad Rafidah",
+govText:"Ahad Rafidah is one of the most historically rich governorates in Asir region, combining deep tribal heritage with modern development.",
 archTitle:"Archaeological Sites",
-jarash:"Jarash Archaeological City: A historical site reflecting ancient civilizations.",
-sunday:"Sunday Traditional Market: A popular heritage market.",
-hamoma:"Mount Hamoma Inscriptions: Historic rock carvings.",
-
+jarash:"Jarash Ancient City — historic remains reflecting ancient civilizations.",
+sunday:"Sunday Heritage Market — traditional cultural marketplace.",
+hamoma:"Hamoma Mountain Inscriptions — ancient rock engravings.",
 centersTitle:"Centers",
-shaaf:"Al Shaaf Center – Shaaf Lajwan Museum.",
-faraain:"Al Faraain Center – Al Rumaiah Heritage Museum.",
-wadain:"Al Wadain Center – Friday Market."
+shaaf:"Al Shaaf Center — Shaaf Lajwan Museum.",
+faraain:"Al Faraain Center — Al Rumaih Heritage Museum.",
+wadain:"Al Wadain Center — Friday Market."
 },
 
 fr:{
 homeTitle:"Culture et Patrimoine",
-btnGov:"Gouvernorat d'Ahad Rafidah",
-btnArch:"Sites archéologiques",
+btnGov:"Ahad Rafidah",
+btnArch:"Sites Archéologiques",
 btnCenters:"Centres",
-
-govTitle:"Gouvernorat d'Ahad Rafidah",
-govText:"Ahad Rafidah représente une profondeur patrimoniale dans la région d’Asir.",
-
-archTitle:"Sites archéologiques",
-jarash:"Ville archéologique de Jarash.",
-sunday:"Marché populaire du dimanche.",
+govTitle:"Ahad Rafidah",
+govText:"Ahad Rafidah représente un patrimoine culturel profond dans la région d’Asir.",
+archTitle:"Sites Archéologiques",
+jarash:"Ville antique de Jarash.",
+sunday:"Marché traditionnel du dimanche.",
 hamoma:"Inscriptions du mont Hamoma.",
-
 centersTitle:"Centres",
 shaaf:"Centre Al Shaaf — Musée Shaaf Lajwan.",
-faraain:"Centre Al Faraain — Musée Al Rumaiah.",
+faraain:"Centre Al Faraain — Musée Al Rumaih.",
 wadain:"Centre Al Wadain — Marché du vendredi."
 }
 
 };
 
-/* ===== تفعيل اللغة ===== */
 function setLang(lang){
 
-const d=data[lang];
+document.getElementById("homeTitle").innerText=data[lang].homeTitle;
+document.getElementById("btnGov").innerText=data[lang].btnGov;
+document.getElementById("btnArch").innerText=data[lang].btnArch;
+document.getElementById("btnCenters").innerText=data[lang].btnCenters;
 
-document.getElementById("homeTitle").innerText=d.homeTitle;
-document.getElementById("btnGov").innerText=d.btnGov;
-document.getElementById("btnArch").innerText=d.btnArch;
-document.getElementById("btnCenters").innerText=d.btnCenters;
+document.getElementById("govTitle").innerText=data[lang].govTitle;
+document.getElementById("govText").innerText=data[lang].govText;
 
-document.getElementById("govTitle").innerText=d.govTitle;
-document.getElementById("govText").innerText=d.govText;
+document.getElementById("archTitle").innerText=data[lang].archTitle;
+document.getElementById("jarash").innerText=data[lang].jarash;
+document.getElementById("sunday").innerText=data[lang].sunday;
+document.getElementById("hamoma").innerText=data[lang].hamoma;
 
-document.getElementById("archTitle").innerText=d.archTitle;
-document.getElementById("jarash").innerText=d.jarash;
-document.getElementById("sunday").innerText=d.sunday;
-document.getElementById("hamoma").innerText=d.hamoma;
-
-document.getElementById("centersTitle").innerText=d.centersTitle;
-document.getElementById("shaaf").innerText=d.shaaf;
-document.getElementById("faraain").innerText=d.faraain;
-document.getElementById("wadain").innerText=d.wadain;
+document.getElementById("centersTitle").innerText=data[lang].centersTitle;
+document.getElementById("shaaf").innerText=data[lang].shaaf;
+document.getElementById("faraain").innerText=data[lang].faraain;
+document.getElementById("wadain").innerText=data[lang].wadain;
 
 show('home');
 }
